@@ -12,6 +12,9 @@ public class TurretSystem : MonoBehaviour
     public GameObject Shot;
     public GameObject Muzzle;
 
+    private float distance;
+
+
     // Start is called before the first frame update
     Camera _camera = null;  // cached because Camera.main is slow, so we only call it once.
 
@@ -64,5 +67,13 @@ public class TurretSystem : MonoBehaviour
         //Ring.transform.Rotate(Vector3.right, rotY);
     }
 
+
+    public void SetTurretDistance(float distance)
+    {
+        float minDistance = -25f;
+        float newDistance = minDistance - distance;
+        Base.transform.localPosition = new Vector3(newDistance, 0, 0);
+
+    }
 
 }
