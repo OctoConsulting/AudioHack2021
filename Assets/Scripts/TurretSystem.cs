@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurretSystem : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class TurretSystem : MonoBehaviour
     public GameObject Shot;
     public GameObject Muzzle;
 
+    public Text shotData;
+
     private float distance;
 
 
@@ -22,6 +25,7 @@ public class TurretSystem : MonoBehaviour
     {
         _camera = Camera.main;
         Flash.SetActive(false);
+        shotData.text = "Angle: 0\nDistance: 0";
     }
 
     // Update is called once per frame
@@ -44,6 +48,7 @@ public class TurretSystem : MonoBehaviour
         StartCoroutine(ShotFlash());
         GameObject newShot = Instantiate(Shot, Muzzle.transform.position, Quaternion.LookRotation(Muzzle.transform.forward));
         newShot.transform.parent = null;
+        ProcessShotData();
     }
 
     IEnumerator ShotFlash()
@@ -51,6 +56,25 @@ public class TurretSystem : MonoBehaviour
         Flash.SetActive(true);
         yield return new WaitForSeconds(0.2f);
         Flash.SetActive(false);
+    }
+
+    void ProcessShotData()
+    {
+        float angle = GetAngle();
+        float distance = GetDistance();
+        shotData.text = $"Angle: {angle}\nDistance: {distance}m";
+    }
+
+    float GetAngle()
+    {
+        Vector3 targetDir = Ring.transform.position - Base.transform.position;
+
+        return Vector3.Angle(targetDir, transform.forward);
+    }
+
+    float GetDistance()
+    {
+        return Mathf.RoundToInt(Vector3.Distance(Ring.transform.position, Base.transform.position));
     }
 
     void HandleMouseRotation()
