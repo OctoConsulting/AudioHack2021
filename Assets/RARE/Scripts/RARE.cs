@@ -471,6 +471,8 @@ public class RARE : MonoBehaviour
         fileStream.Write(subChunk2, 0, 4);
         fileStream.Close();
         print("FinishWritingFile " + fileStream.Name);
+        // trigger another shot
+        TurretSystem.instance.processingShot = false;
         //BasicAudio.instance.ListenerStartStop();
         //Application.OpenURL(Application.persistentDataPath);
     }

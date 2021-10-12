@@ -22,6 +22,7 @@ public class TurretSystem : MonoBehaviour
 
     public string newShotString = string.Empty;
 
+    public bool processingShot;
 
     // Start is called before the first frame update
     Camera _camera = null;  // cached because Camera.main is slow, so we only call it once.
@@ -32,24 +33,36 @@ public class TurretSystem : MonoBehaviour
         _camera = Camera.main;
         Flash.SetActive(false);
         shotData.text = "Angle: 0\nDistance: 0";
+
+        // start the first shot
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        HandleMouseRotation();
-        if (Input.GetKeyUp("space"))
-            HandleShot();
-
-
-
-
+        // monitor successive shots
+        //if (Input.GetKeyUp("space"))
+        if (!processingShot)
+            StartCoroutine(RandomShots());
 
     }
 
+
+    IEnumerator RandomShots()
+    {
+        HandleMouseRotation();
+        SetTurretDistance();
+        HandleShot();
+        while (processingShot)
+            yield return new WaitForSeconds(1f);
+
+    }
+
+
     void HandleShot()
     {
+        processingShot = true;
         shot_count++;
         print(shot_count);
         ProcessShotString();
@@ -57,10 +70,10 @@ public class TurretSystem : MonoBehaviour
         gunSource.Play();
 
         StartCoroutine(ShotFlash());
+
         StartCoroutine(WaitforClipToEnd());
         GameObject newShot = Instantiate(Shot, Muzzle.transform.position, Quaternion.LookRotation(Muzzle.transform.forward));
         newShot.transform.parent = null;
-
     }
 
     IEnumerator ShotFlash()
@@ -73,10 +86,11 @@ public class TurretSystem : MonoBehaviour
     IEnumerator WaitforClipToEnd()
     {
         while (gunSource.isPlaying)
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(gunSource.clip.length);
         // gunsource has stopped    
         BasicAudio.instance.ListenerStop(newShotString);
     }
+
     void ProcessShotString()
     {
         azimuth = GetAngle();
@@ -86,19 +100,14 @@ public class TurretSystem : MonoBehaviour
         string azi = Mathf.RoundToInt(azimuth).ToString();
         string dist = System.Math.Round(distance, 2).ToString();
         newShotString = prefix + azi + "_distance_" + dist;
-
     }
 
     float GetAngle()
     {
         // raw rotation
         float angle = Ring.transform.rotation.eulerAngles.y;
-
         angle = (angle > 360) ? angle - 360 : angle;
-
         return angle;
-        //float rValue = Vector3.Dot(Ring.transform.position.normalized, Base.transform.position.normalized);
-        // return Mathf.Acos(rValue) * Mathf.Rad2Deg;
     }
 
 
@@ -109,21 +118,14 @@ public class TurretSystem : MonoBehaviour
 
     void HandleMouseRotation()
     {
-        float rotSpeed = 50;
-
-        float rotX = Input.GetAxis("Mouse X") * rotSpeed * Mathf.Deg2Rad;
-        //float rotY = Input.GetAxis("Mouse Y") * rotSpeed * Mathf.Deg2Rad;
-
-        // if (Input.GetKey("space"))
-        //     Turret.transform.Rotate(Vector3.up, rotX);
-        // else
+        float rotX = Random.Range(0, 359);
         Ring.transform.Rotate(Vector3.up, rotX);
-        //Ring.transform.Rotate(Vector3.right, rotY);
     }
 
 
-    public void SetTurretDistance(float distance)
+    public void SetTurretDistance()
     {
+        float distance = Random.Range(-80, -25);
         float minDistance = -25f;
         float newDistance = minDistance - distance;
         Base.transform.localPosition = new Vector3(newDistance, 0, 0);
