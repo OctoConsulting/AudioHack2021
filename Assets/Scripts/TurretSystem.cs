@@ -84,7 +84,8 @@ public class TurretSystem : MonoBehaviour
         shotData.text = $"Angle: {azimuth}\nDistance: {distance}m";
         string prefix = "ShotAzimuth_";
         string azi = Mathf.RoundToInt(azimuth).ToString();
-        newShotString = prefix + azi;
+        string dist = System.Math.Round(distance, 2).ToString();
+        newShotString = prefix + azi + "_distance_" + dist;
 
     }
 
