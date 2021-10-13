@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class TurretSystem : MonoBehaviour
 {
     public static TurretSystem instance;
+
+    [Header("Essential Game Objects")]
     public AudioSource gunSource;
     public GameObject Turret;
     public GameObject Base;
@@ -13,16 +15,18 @@ public class TurretSystem : MonoBehaviour
     public GameObject Flash;
     public GameObject Shot;
     public GameObject Muzzle;
-
     public Text shotData;
 
+    [Header("Core Variables")]
     public float distance;
     public float azimuth;
     public int shot_count;
-
     public string newShotString = string.Empty;
 
+    [Header("Automation")]
+    public int desiredShotCount;
     public bool processingShot;
+    public bool automateShotData = false;
 
     // Start is called before the first frame update
     Camera _camera = null;  // cached because Camera.main is slow, so we only call it once.
@@ -33,25 +37,30 @@ public class TurretSystem : MonoBehaviour
         _camera = Camera.main;
         Flash.SetActive(false);
         shotData.text = "Angle: 0\nDistance: 0";
-
-        // start the first shot
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        // monitor successive shots
-        //if (Input.GetKeyUp("space"))
-        if (!processingShot)
-            StartCoroutine(RandomShots());
+        // if we want to generate some shot data
+        if (automateShotData)
+        {
+            if (!processingShot && shot_count < desiredShotCount)
+                StartCoroutine(RandomShots());
+        }
+        else// otherwise we want to manually test the system
+        {
+            HandleMouseRotation();
+            if (Input.GetMouseButtonUp(0))
+                HandleShot();
+        }
 
     }
 
 
     IEnumerator RandomShots()
     {
-        HandleMouseRotation();
+        HandleAutoMouseRotation();
         SetTurretDistance();
         HandleShot();
         while (processingShot)
@@ -116,16 +125,39 @@ public class TurretSystem : MonoBehaviour
         return Mathf.RoundToInt(Vector3.Distance(Ring.transform.position, Base.transform.position));
     }
 
-    void HandleMouseRotation()
+    void HandleAutoMouseRotation()
     {
         float rotX = Random.Range(0, 359);
         Ring.transform.Rotate(Vector3.up, rotX);
     }
 
+    void HandleMouseRotation()
+    {
+        float rotSpeed = 50;
+
+        float rotX = Input.GetAxis("Mouse X") * rotSpeed * Mathf.Deg2Rad;
+        //float rotY = Input.GetAxis("Mouse Y") * rotSpeed * Mathf.Deg2Rad;
+
+        if (Input.GetKey("space"))
+            Turret.transform.Rotate(Vector3.up, rotX);
+        else
+            Ring.transform.Rotate(Vector3.up, rotX);
+        //Ring.transform.Rotate(Vector3.right, rotY);
+    }
+
 
     public void SetTurretDistance()
     {
-        float distance = Random.Range(-80, -25);
+        float minDistance = -25f;
+        float maxDistance = -180f;
+        float distance = Random.Range(maxDistance, minDistance);
+
+        float newDistance = minDistance - distance;
+        Base.transform.localPosition = new Vector3(newDistance, 0, 0);
+
+    }
+    public void SetTurretDistance(float distance)
+    {
         float minDistance = -25f;
         float newDistance = minDistance - distance;
         Base.transform.localPosition = new Vector3(newDistance, 0, 0);
