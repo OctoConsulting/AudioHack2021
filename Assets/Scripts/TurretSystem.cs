@@ -37,6 +37,10 @@ public class TurretSystem : MonoBehaviour
         _camera = Camera.main;
         Flash.SetActive(false);
         shotData.text = "Angle: 0\nDistance: 0";
+
+        // UniStorm.UniStormManager.Instance.SetAmbienceVolume(0.0f);
+        // UniStorm.UniStormManager.Instance.SetWeatherVolume(0.3f);
+
     }
 
     // Update is called once per frame
@@ -51,12 +55,18 @@ public class TurretSystem : MonoBehaviour
         else// otherwise we want to manually test the system
         {
             HandleMouseRotation();
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetKeyUp("space"))
                 HandleShot();
         }
 
     }
 
+
+    public void SetAmbientVolume(float newValue)
+    {
+        UniStorm.UniStormManager.Instance.SetWeatherVolume(newValue);
+        UniStorm.UniStormManager.Instance.SetAmbienceVolume(newValue);
+    }
 
     IEnumerator RandomShots()
     {

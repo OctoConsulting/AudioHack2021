@@ -19,27 +19,13 @@ public class AudioManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp("space"))
-        {
-            if (!gunSource.isPlaying)
-            {
-                isRecording = true;
-                //BasicAudio.instance.ListenerStartStop();
-                gunSource.Play();
-            }
-        }
-        // if gun sound has stopped playing, then stop recording
-        if (!gunSource.isPlaying && isRecording)
-        {
 
-            isRecording = false;
-            //BasicAudio.instance.ListenerStartStop();
-
-        }
 
 
 
     }
+
+
 
 
 
