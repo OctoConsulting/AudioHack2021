@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class TurretSystem : MonoBehaviour
 {
     public static TurretSystem instance;
 
     [Header("Essential Game Objects")]
+    public TextMesh degreesText;
     public AudioSource gunSource;
     public GameObject Turret;
     public GameObject Base;
@@ -78,6 +79,12 @@ public class TurretSystem : MonoBehaviour
 
     }
 
+    IEnumerator RemoveShot(GameObject shot)
+    {
+
+        yield return new WaitForSeconds(gunSource.clip.length);
+        Destroy(shot);
+    }
 
     void HandleShot()
     {
@@ -92,6 +99,7 @@ public class TurretSystem : MonoBehaviour
 
         StartCoroutine(WaitforClipToEnd());
         GameObject newShot = Instantiate(Shot, Muzzle.transform.position, Quaternion.LookRotation(Muzzle.transform.forward));
+        StartCoroutine(RemoveShot(newShot));
         newShot.transform.parent = null;
     }
 
@@ -153,6 +161,8 @@ public class TurretSystem : MonoBehaviour
         else
             Ring.transform.Rotate(Vector3.up, rotX);
         //Ring.transform.Rotate(Vector3.right, rotY);
+
+        degreesText.text = System.Math.Round(GetAngle(), 2).ToString();
     }
 
 
