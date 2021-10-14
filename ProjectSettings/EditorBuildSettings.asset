@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/GunRange.unity
+    guid: 76fab7b4a2b836e4591f1a6ea3dee6d5
   m_configObjects: {}
