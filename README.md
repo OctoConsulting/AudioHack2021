@@ -1,5 +1,6 @@
 ﻿# Seeing Eye Bats: 2021 Hack-A-Thon
  ![img](https://github.com/OctoConsulting/AudioHack2021/blob/master/Assets/Screenshots/TitleShot.jpg)
+ 
  This hack submission consists of 2 parts, a Unity portion and the ML portion.
  
  ## Premise
@@ -8,6 +9,16 @@
  ## Unity 
  The unity app allows the user to rotate a 3d gun around our Ear Bat character by moving the mouse and by pressing the SPACE BAR, fire off a shot.  This shot is then recorded from inside the engine using spatialized sound into a 2 channel new audio clip.
  ![img](https://github.com/OctoConsulting/AudioHack2021/blob/master/Assets/Screenshots/UnityScreen.jpg)
+ 
+ ### Variables
+ 
+ The engine provides the ability for the user to determine which direction to fire a shot as well as as distance
+ 
+ 
+ In addition, the user can change the environmental weather conditions to add in realitic ambient noise conditions to further test the model.
+ 
+ ![img](https://github.com/OctoConsulting/AudioHack2021/blob/master/Assets/Screenshots/EarBatsWeatherChange.gif)
+ 
  
  ## ML 
  Once an audio clip has been generated from Unity, the new file is dumped into a folder which is constantly monitored.  When trat new file is detected, the model is run, and a direction and distance is determined and output for the user.
