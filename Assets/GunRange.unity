@@ -333,8 +333,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 73752622}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 767784997}
@@ -342,7 +342,7 @@ Transform:
   - {fileID: 1944088197}
   m_Father: {fileID: 1390158449}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &87256057
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,8 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   degreesText: {fileID: 1273849359}
   gunSource: {fileID: 828874786}
-  Turret: {fileID: 1944088196}
-  Base: {fileID: 73752622}
+  GUN: {fileID: 1944088196}
   Ring: {fileID: 1390158448}
   Flash: {fileID: 1514140724}
   Shot: {fileID: 9079737227876040809, guid: 8c35ba9b0974c464ab0776651f1d5ea5, type: 3}
@@ -496,9 +495,9 @@ MonoBehaviour:
   azimuth: 0
   shot_count: 0
   newShotString: 
-  desiredShotCount: 200
+  desiredShotCount: 1
   processingShot: 0
-  automateShotData: 1
+  automateShotData: 0
 --- !u!4 &121592120
 Transform:
   m_ObjectHideFlags: 0
@@ -2930,7 +2929,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1c574a7c95db0204d8f2627686dde9dd, type: 2}
   - {fileID: 11400000, guid: 2c22445a1c49d7f4587aad0d120738bb, type: 2}
   - {fileID: 11400000, guid: 9c9c95d0c839e12409171dc4a845551a, type: 2}
-  CurrentWeatherType: {fileID: 11400000, guid: ec37544ca0d8b3640b920a1f69c80705, type: 2}
+  CurrentWeatherType: {fileID: 11400000, guid: 865815ce607d94c4cb41162c44555e7c, type: 2}
   NextWeatherType: {fileID: 0}
   ByPassCoverageTransition: 0
   m_PrecipitationOdds: 50
@@ -5776,15 +5775,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1374856063}
-  m_LocalRotation: {x: 0.27059805, y: 0.27059805, z: -0.6532815, w: 0.6532815}
-  m_LocalPosition: {x: 2.124499, y: -0.025256218, z: 0}
+  m_LocalRotation: {x: 0.6532815, y: -0.6532815, z: 0.27059805, w: 0.27059805}
+  m_LocalPosition: {x: 2.19, y: -0, z: 0}
   m_LocalScale: {x: 0.23842523, y: 3.3669865, z: 0.23842527}
   m_Children:
   - {fileID: 828874785}
   - {fileID: 131130275}
   m_Father: {fileID: 1944088197}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 45, y: -180, z: -90}
 --- !u!23 &1374856065
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6119,14 +6118,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508656654}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1390158449}
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1514140724
 GameObject:
   m_ObjectHideFlags: 0
@@ -6569,9 +6568,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1188569803}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 200
+  m_MaxValue: 150
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 25
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -6863,7 +6862,7 @@ GameObject:
   - component: {fileID: 1944088199}
   - component: {fileID: 1944088198}
   m_Layer: 0
-  m_Name: turret
+  m_Name: GUN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6877,7 +6876,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944088196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.95, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 0.6731, y: 0.6731, z: 0.6731}
   m_Children:
   - {fileID: 1374856064}
