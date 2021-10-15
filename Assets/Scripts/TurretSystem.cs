@@ -29,6 +29,8 @@ public class TurretSystem : MonoBehaviour
     public bool processingShot;
     public bool automateShotData = false;
 
+    private float shotRotation = 0f;
+
     // Start is called before the first frame update
     Camera _camera = null;  // cached because Camera.main is slow, so we only call it once.
 
@@ -39,8 +41,6 @@ public class TurretSystem : MonoBehaviour
         Flash.SetActive(false);
         shotData.text = "Angle: 0\nDistance: 0";
 
-        // UniStorm.UniStormManager.Instance.SetAmbienceVolume(0.0f);
-        // UniStorm.UniStormManager.Instance.SetWeatherVolume(0.3f);
 
     }
 
@@ -74,6 +74,7 @@ public class TurretSystem : MonoBehaviour
         HandleAutoMouseRotation();
         SetTurretDistance();
         HandleShot();
+        SetAmbientVolume(Random.Range(0, 1));
         while (processingShot)
             yield return new WaitForSeconds(1f);
 
@@ -120,7 +121,7 @@ public class TurretSystem : MonoBehaviour
 
     void ProcessShotString()
     {
-        azimuth = GetAngle();
+        azimuth = shotRotation;
         distance = GetDistance();
         shotData.text = $"Angle: {azimuth}\nDistance: {distance}m";
         string prefix = "ShotAzimuth_";
@@ -145,22 +146,17 @@ public class TurretSystem : MonoBehaviour
 
     void HandleAutoMouseRotation()
     {
-        float rotX = Random.Range(0, 359);
-        Ring.transform.Rotate(Vector3.up, rotX);
+        shotRotation = Random.Range(0, 359);
+        Ring.transform.Rotate(Vector3.up, shotRotation);
     }
 
     void HandleMouseRotation()
     {
         float rotSpeed = 50;
 
-        float rotX = Input.GetAxis("Mouse X") * rotSpeed * Mathf.Deg2Rad;
-        //float rotY = Input.GetAxis("Mouse Y") * rotSpeed * Mathf.Deg2Rad;
+        shotRotation = Input.GetAxis("Mouse X") * rotSpeed * Mathf.Deg2Rad;
 
-        if (Input.GetKey("space"))
-            Turret.transform.Rotate(Vector3.up, rotX);
-        else
-            Ring.transform.Rotate(Vector3.up, rotX);
-        //Ring.transform.Rotate(Vector3.right, rotY);
+        Ring.transform.Rotate(Vector3.up, shotRotation);
 
         degreesText.text = System.Math.Round(GetAngle(), 2).ToString();
     }
@@ -168,12 +164,10 @@ public class TurretSystem : MonoBehaviour
 
     public void SetTurretDistance()
     {
-        float minDistance = -25f;
-        float maxDistance = -180f;
-        float distance = Random.Range(maxDistance, minDistance);
-
-        float newDistance = minDistance - distance;
-        Base.transform.localPosition = new Vector3(newDistance, 0, 0);
+        float minDistance = -250f;
+        float maxDistance = -25f;
+        float distance = Random.Range(minDistance, maxDistance);
+        Base.transform.localPosition = new Vector3(distance, 0, 0);
 
     }
     public void SetTurretDistance(float distance)

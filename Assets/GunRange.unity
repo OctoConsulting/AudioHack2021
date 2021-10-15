@@ -496,9 +496,9 @@ MonoBehaviour:
   azimuth: 0
   shot_count: 0
   newShotString: 
-  desiredShotCount: 1100
+  desiredShotCount: 200
   processingShot: 0
-  automateShotData: 0
+  automateShotData: 1
 --- !u!4 &121592120
 Transform:
   m_ObjectHideFlags: 0
@@ -2686,7 +2686,7 @@ MonoBehaviour:
   UniStormMenuKey: 27
   UniStormCanvas: {fileID: 0}
   m_MenuToggle: 0
-  TabNumber: 1
+  TabNumber: 2
   TimeTabNumbers: 0
   WeatherTabNumbers: 1
   CelestialTabNumbers: 0
@@ -2930,7 +2930,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1c574a7c95db0204d8f2627686dde9dd, type: 2}
   - {fileID: 11400000, guid: 2c22445a1c49d7f4587aad0d120738bb, type: 2}
   - {fileID: 11400000, guid: 9c9c95d0c839e12409171dc4a845551a, type: 2}
-  CurrentWeatherType: {fileID: 11400000, guid: 601a6938fd2feec47bb7c99a5497ae9b, type: 2}
+  CurrentWeatherType: {fileID: 11400000, guid: ec37544ca0d8b3640b920a1f69c80705, type: 2}
   NextWeatherType: {fileID: 0}
   ByPassCoverageTransition: 0
   m_PrecipitationOdds: 50
