@@ -25,8 +25,10 @@
  
  
  ## ML 
- Once an audio clip has been generated from Unity, the new file is dumped into a folder which is constantly monitored.  When trat new file is detected, the model is run, and a direction and distance is determined and output for the user.
- ![img](https://github.com/OctoConsulting/AudioHack2021/blob/master/Assets/Screenshots/UnityScreen.jpg)
+ Once an audio clip has been generated from Unity, the new file is dumped into a folder which is constantly monitored.  When that new file is detected, the model is run, and a direction and distance is determined and output for the user.
+ 
+ 
+ 
  
  # Running The Demo
  
