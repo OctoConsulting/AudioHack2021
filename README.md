@@ -4,14 +4,14 @@
  This hack submission consists of 2 parts, a Unity portion and the ML portion.
  
  ## Premise
- In order to test a model that could detect direction and distance a shot was fired, we created a 3d simulation which allowed for the generation of those specific gun shots.
+ Test a model that can detect direction and distance of a shot fired within a 3d simulation using game engine technology.
  
  ## Unity 
  The unity app allows the user to rotate a 3d gun around our Ear Bat character by moving the mouse and by pressing the SPACE BAR, fire off a shot.  This shot is then recorded from inside the engine using spatialized sound into a 2 channel new audio clip.
  ![img](https://github.com/OctoConsulting/AudioHack2021/blob/master/Assets/Screenshots/UnityScreen.jpg)
  
  
- In order to train the model, we setup an automation mode that allowed us to generate as many samples as we needed.  The final training consisted of about 1100 samples generated with a click of a button.
+ In order to train the model, we setup an automation procedure that allowed us to generate as many samples as we needed.  The final training consisted of almost 2400 samples generated with a click of a button.
  
  
  ### Variables
@@ -48,4 +48,7 @@ All sound files will be dumped into the following folder
 `C:\Users\<your user name>\AppData\LocalLow\Seeing Ear Bats\Hack-a-thon_2021`
 
 
+# Final Results
+
+Our application generates shot azimuth and shot distance detections with around 90% accuracy.
 
