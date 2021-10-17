@@ -41,3 +41,5 @@ Space Bar will fire a shot.
 Hit Escape to shot the weather dialog and change the environment conditions as you see fit.
 
 Use the slider to adjust the distance of the gun from the Ear Bat, and the other slider to increase or decrease the level of ambient noise.
+
+The TensorFlow models can be trained in notebooks/hackathon_train_model.ipynb and can be run from notebooks/hackathon_app.ipynb. Saved models are in Assets/models/ in h5 format and loaded by the notebooks. Running all cells in hackathon_app.ipynb will bring up the compass and monitor a directory, but the directory path must be manually set first. It is best to first start the unity app and then the Tensorflow app so as to avoid errors from non-audio file creation.
