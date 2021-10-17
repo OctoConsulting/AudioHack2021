@@ -495,9 +495,9 @@ MonoBehaviour:
   azimuth: 0
   shot_count: 0
   newShotString: 
-  desiredShotCount: 1
+  desiredShotCount: 2500
   processingShot: 0
-  automateShotData: 0
+  automateShotData: 1
 --- !u!4 &121592120
 Transform:
   m_ObjectHideFlags: 0
