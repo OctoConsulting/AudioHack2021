@@ -41,3 +41,9 @@ Space Bar will fire a shot.
 Hit Escape to shot the weather dialog and change the environment conditions as you see fit.
 
 Use the slider to adjust the distance of the gun from the Ear Bat, and the other slider to increase or decrease the level of ambient noise.
+
+All sound files will be dumped into the following folder
+`C:\Users\<your user name>\AppData\LocalLow\Seeing Ear Bats\Hack-a-thon_2021`
+
+
+
