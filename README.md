@@ -52,6 +52,6 @@ All sound files will be dumped into the following folder
 
 # Final Results
 
-Our application generates shot azimuth and shot distance detections with around 90% accuracy.
+Our application generates shot azimuth and shot distance detections with around 89% and 94% accuracy.
 
->>>>>>> ff25842e53acd5a3cafed4bedda6015b8f412ff4
+
